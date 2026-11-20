@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Warriors — Protect the Crusade | Cougar Crusade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fdfaf2; --surface:#ffffff; --surface2:#f7efdb;
+  --ink:#000000; --muted:#1a1a1a; --line:#e3d5ae;
+  --gold:#a87c0a; --gold-bright:#e9b949; --gold-deep:#7a5a06;
+  --dark:#14100a; --dark2:#221b0e;
+  --goon:#8c1d18; --goon-bg:#fbe9e7;
+  --win:#a87c0a; --bad:#b3261e;
+  --radius:14px; --shadow:0 10px 30px rgba(28,22,8,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Manrope",system-ui,sans-serif;font-size:21px;line-height:1.6;font-weight:700;overflow-x:hidden;overscroll-behavior:none}
+button,a.btn{min-height:48px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:"Manrope",system-ui,sans-serif;line-height:1.12;margin:0;font-weight:900}
+h2{font-size:clamp(1.7rem,4.5vw,2.5rem);font-weight:900;margin-bottom:.4em}
+h3{font-size:1.3rem;font-weight:900}
+p{margin:0 0 1em;font-weight:500}
+li{font-weight:500}
+.muted{color:var(--muted)}
+section{padding:52px 0 8px}
+.kicker{font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:1.05rem;color:#000000;margin-bottom:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 26px;border-radius:999px;font-weight:800;font-size:1.05rem;text-decoration:none;border:2px solid transparent;cursor:pointer;font-family:inherit}
+.btn-gold{background:var(--gold-bright);color:#000000}
+.btn-gold:hover{background:#f2cd6b}
+.btn-dark{background:var(--dark);color:#f6efdc}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--gold)}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px 26px;box-shadow:var(--shadow);margin-top:18px}
+.card.gold-border{border:2px solid var(--gold)}
+.hero{background:#ffffff;border-bottom:6px solid #000000;padding:34px 0 30px}
+.hero h1{font-size:clamp(2.6rem,8vw,3.8rem);font-weight:900;color:#000000;max-width:16em}
+.hero .lede{font-size:clamp(1.25rem,2.8vw,1.45rem);max-width:38em;color:#000000;font-weight:700;margin-top:16px}
+.level{display:flex;gap:18px;align-items:flex-start}
+.mono{width:56px;height:56px;border-radius:50%;background:var(--gold-bright);color:#000000;font-family:"Manrope",system-ui,sans-serif;font-weight:900;font-size:1.6rem;display:flex;align-items:center;justify-content:center;flex:0 0 auto;margin-bottom:10px}
+.enemy-warning{background:#5a1010;color:#ffd9d4;border:2px solid #b3261e;border-radius:14px;padding:20px 22px;margin-top:18px;font-size:1.08rem}
+.enemy-warning strong{color:#fff}
+.choice{text-align:left;background:#fdfaf2;color:#000000;border:3px solid transparent;border-radius:14px;padding:16px 18px;font-family:inherit;font-size:1.05rem;font-weight:700;line-height:1.45;cursor:pointer;width:100%;margin-top:10px}
+.choice:hover{border-color:var(--gold-bright)}
+.choice.picked-best{border-color:#a87c0a;background:#fdf3d7}
+.choice.picked-bad{border-color:#b3261e;background:#fbe9e7}
+.choice:disabled{cursor:default;opacity:.75}
+.feedback{margin-top:14px;font-weight:700}
+.feedback .verdict{font-family:"Manrope",system-ui,sans-serif;font-size:1.3rem;font-weight:900;margin-bottom:4px}
+.qcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px 26px;box-shadow:var(--shadow);margin-top:18px}
+.qcard .asker{font-weight:800;color:#000000}
+.badge{display:none;background:var(--dark);color:#f6efdc;border-radius:20px;padding:26px 22px;box-shadow:var(--shadow);margin-top:26px;text-align:center}
+.badge h2{color:var(--gold-bright)}
+.badge p{color:#e8dfc6}
+.join-free{background:var(--surface2);border:2px solid var(--gold);border-radius:20px;padding:26px 24px;margin-top:18px}
+.progress-line{font-weight:800;margin-top:16px;margin-bottom:0}
+.playground-name{font-size:clamp(2rem,6vw,3rem);font-weight:900;color:#000000;margin:8px 0 4px}
+.playground-line{font-size:1.2rem;font-weight:700}
+.playground-note{font-size:1rem;color:#1a1a1a}
+footer{padding:40px 0 60px;text-align:center}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">Cougar Crusade &mdash; Moderator Training</p>
+    <h1>Warriors</h1>
+    <p class="lede"><strong>Protect me. Protect the Crusade.</strong> My Warriors are the ones who are in the game, who play a lot, who spend a lot of time here, and who really want to protect me and the Crusade. This is your training. Five levels. Pass them all, and you earn the badge.</p>
+    <div class="cta-row">
+      <a class="btn btn-gold" href="#train">Start Training</a>
+      <a class="btn btn-ghost" href="https://www.cougarcrusade.com/play-the-game">Play Cougars vs Gooners</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+<section id="train">
+  <p class="kicker">The Training &mdash; Five Levels</p>
+  <h2>How a Warrior plays, every single night.</h2>
+  <p class="muted">Read each level. Then take the test at the bottom. Ten situations from the real live. Answer them like a Warrior.</p>
+
+  <div class="card gold-border level">
+    <div class="mono">1</div>
+    <div>
+      <h3>Welcome &mdash; greet every new person</h3>
+      <p>A new woman walks into the live, shy, first night, does not know anyone. You are the first face she sees. Welcome her by name. Tell her she belongs here. Make her feel safe and seen, straight away. Nobody waits to be noticed. Nobody sits alone in my room. Try a pet name from the Playground below — the right one makes her feel like family straight away.</p>
+    </div>
+  </div>
+
+  <div class="card gold-border level">
+    <div class="mono">2</div>
+    <div>
+      <h3>Keep it going &mdash; interactive, 100% of the time</h3>
+      <p>A Warrior is never just watching. Ask a question. React to what someone said. Keep the chat moving. When the room goes quiet, you talk. When someone shares something, you answer it. The room stays warm because you keep it warm.</p>
+    </div>
+  </div>
+
+  <div class="card gold-border level">
+    <div class="mono">3</div>
+    <div>
+      <h3>Grow the team &mdash; meet new people, bring them in</h3>
+      <p>Meet new people every night. Encourage others to play. When someone is watching but not playing, invite them in &mdash; tap, cheer, answer a Queen Question, tell us about yourself. Point them to the Tell Me About You form, so I get to know them too. Every new Cougar makes the team stronger.</p>
+      <p><a class="btn btn-gold" href="https://docs.google.com/forms/d/e/1FAIpQLSesvO63fujxMxLRn8CLE3gmRzkCL42ip7K8KyMF3b_UyB9BqA/viewform" target="_blank" rel="noopener">Tell Me About You</a></p>
+    </div>
+  </div>
+
+  <div class="card level">
+    <div class="mono">4</div>
+    <div>
+      <h3>Protect the Crusade &mdash; spot the Gooners</h3>
+      <p>Gooners are the opponents. They lurk, they take, they give nothing. They objectify women, they say disgusting things, they snipe in the last ten seconds and never play fair. When you see it, name it, shut it down, and bring the game back to playing together. Keep the room safe and respectful for women over 40, always. If it is serious, or you are not sure, get me. I am right there.</p>
+      <div class="enemy-warning"><strong>Know your enemy.</strong> The Lurker watches for hours and never says a word, never gives a thing. The Objectifier sees a body, not a woman. The Sniper waits for the last ten seconds to steal it. None of them are on our team.</div>
+    </div>
+  </div>
+
+  <div class="card gold-border level">
+    <div class="mono">5</div>
+    <div>
+      <h3>Warrior test &mdash; earn the badge</h3>
+      <p>Ten situations from the live. Answer them like a Warrior. Get them all right and you earn the Warrior badge &mdash; and my trust, on the floor, every night.</p>
+    </div>
+  </div>
+</section>
+
+<section id="test">
+  <p class="kicker">The Warrior Test</p>
+  <h2>Ten situations. Answer like a Warrior.</h2>
+  <p class="muted">Tap the answer you would really give. There is no trick &mdash; just the room, and what a Warrior does in it.</p>
+  <div id="quiz"></div>
+  <p class="progress-line" id="counter">You have answered 0 of 10 situations.</p>
+  <div class="badge" id="badge">
+    <h2>You are a Warrior.</h2>
+    <p>You passed all ten. You welcome, you keep it going, you grow the team, and you protect the Crusade. That is what a Warrior is. I see you, my love &mdash; and I trust you on the floor with me, every night.</p>
+    <p><strong>Play with me. Win with me. &mdash; Jacob</strong></p>
+    <div class="cta-row" style="justify-content:center">
+      <a class="btn btn-gold" href="https://www.cougarcrusade.com/play-the-game">Play Cougars vs Gooners</a>
+      <a class="btn btn-ghost" href="https://www.tiktok.com/@bossvloggerson/live" target="_blank" rel="noopener">Watch Live</a>
+    </div>
+  </div>
+</section>
+
+<section id="playground">
+  <p class="kicker">The Pet Name Playground</p>
+  <h2>Play with the names. Find hers.</h2>
+  <p class="muted">This is a playground, my loves — not a rule book. Tap a feeling, and I will give you a pet name and a playful line to try. One pet name per woman. Pick the one that fits her, and stick with it — that is how she knows it is hers.</p>
+  <div class="card gold-border">
+    <div class="cta-row" id="petname-buttons" style="margin-top:0">
+      <button class="btn btn-gold" type="button" data-style="sweet">Warm &amp; Sweet</button>
+      <button class="btn btn-gold" type="button" data-style="queenly">Glamorous &amp; Queenly</button>
+      <button class="btn btn-gold" type="button" data-style="cheeky">Playful &amp; Cheeky</button>
+      <button class="btn btn-gold" type="button" data-style="fierce">Fierce &amp; Protective</button>
+      <button class="btn btn-gold" type="button" data-style="sisterly">Sisterly &amp; Close</button>
+    </div>
+    <div id="petname-result" style="display:none;margin-top:22px">
+      <p class="kicker" id="petname-feeling"></p>
+      <p class="playground-name" id="petname-name"></p>
+      <p class="playground-line" id="petname-line"></p>
+      <button class="btn btn-dark" type="button" id="petname-again">Try another one</button>
+      <p class="playground-note" style="margin-top:14px">If she does not respond warmly, drop it at once and just use her name. Never use a pet name to pressure her — these are for making her feel loved and wanted, not for pushing her into anything.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="join-free">
+    <p class="kicker">Come Back Tomorrow</p>
+    <h2>My love, come back tomorrow.</h2>
+    <p>Every night after my live, this page is new for you. New situations, new Warriors, new stories. I will be waiting for you.</p>
+    <p><a class="btn btn-gold" href="https://www.cougarcrusade.com/join-cougar-crusade">Join Free &mdash; LIVE Alerts</a></p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p><strong>Play with me. Win with me. &mdash; Jacob</strong></p>
+  <p class="muted"><a href="https://www.cougarcrusade.com/" style="color:#000000">Cougar Crusade</a> &middot; <a href="https://www.cougarcrusade.com/all-episodes" style="color:#000000">Cougar Confessions &mdash; 149 episodes</a></p>
+</footer>
+
+<script>
+var WARRIOR_Q=[
+{"q":"A new woman walks into the live, shy, first night. What do you do first?","c":["Welcome her by name, and tell her she belongs here.","Ignore her until she talks first.","Tell her this room is only for regulars."],"b":0,"f":"That is Level 1. A Warrior greets every new person — nobody sits alone in my room."},
+{"q":"The room has gone quiet. Nobody is talking. What do you do?","c":["Ask a question, react to something someone said, keep the chat moving.","Go quiet too and just watch.","Leave, it is boring when it is quiet."],"b":0,"f":"That is Level 2. A Warrior is interactive 100% of the time — when the room goes quiet, you talk."},
+{"q":"A woman has been watching for an hour but never played. What do you say?","c":["Invite her in — tap, cheer, answer a question, tell us about you.","Leave her alone, she will figure it out.","Tell her she has to gift before she can play."],"b":0,"f":"That is Level 3. Warriors grow the team — tap, cheer, welcome. Gifting comes later, if she wants."},
+{"q":"A Gooner is in the chat, being disgusting about a woman. What do you do?","c":["Stand with her, shut it down, and keep the room safe.","Laugh along, it is only a joke.","Leave the live and let someone else deal with it."],"b":0,"f":"That is Level 4. Cougars protect each other. No laughing along — ever."},
+{"q":"It is the last 10 seconds, Gooners are sniping, trying to steal the battle. What do we do?","c":["Hold our biggest play for the last 10 seconds, and snipe back — together.","Give up, they always win at the end.","Play alone, faster than everyone else."],"b":0,"f":"That is how you fight Gooners: hold the biggest play for the last 10 seconds, and play together."},
+{"q":"A woman tells you she has not felt wanted in years. What do you tell her?","c":["You are wanted here. Stay, play with us, and let us show you.","That is just how it is after 40.","Do not talk about that in the live."],"b":0,"f":"Cougars do not look away from that. They answer it, together."},
+{"q":"A man is love-bombing a woman in the chat, too much, too fast. What do you tell her?","c":["Slow down. Watch what he does over time, not what he says tonight.","Go with it, it feels good.","Block him straight away and never speak to him."],"b":0,"f":"Trust actions over time. That is the Cougar way — confident, not rushed."},
+{"q":"Someone in the chat is being mean about another woman's age, her body, her face. What do you do?","c":["Stand with her. Age and body are not a joke here.","Laugh, it is only teasing.","Stay out of it, it is not your business."],"b":0,"f":"Cougars protect each other. That is what Warriors do."},
+{"q":"A new woman wants to help the team but she has never gifted, never played. What do you tell her?","c":["Tap, cheer, welcome people — that is playing. Gifting comes later, if she wants.","You cannot help without gifting.","Come back when you know how to play."],"b":0,"f":"Playing together is tapping, cheering, welcoming. Everyone can do that."},
+{"q":"It is late, the room is quiet, only a few of you left. What do you do?","c":["Stay, talk, keep the room warm for whoever comes in next.","Leave, it is not worth it with so few people.","Go quiet and just watch."],"b":0,"f":"The quiet hours are when new people feel safe to speak. Stay."}
+];
+var answered=0, correct=0;
+var quiz=document.getElementById('quiz');
+WARRIOR_Q.forEach(function(item, idx){
+  var card=document.createElement('div');
+  card.className='qcard';
+  var num=document.createElement('p');
+  num.className='asker';
+  num.textContent='Situation '+(idx+1)+' of 10';
+  card.appendChild(num);
+  var q=document.createElement('h3');
+  q.textContent=item.q;
+  card.appendChild(q);
+  var fb=document.createElement('div');
+  fb.className='feedback';
+  fb.style.display='none';
+  card.appendChild(fb);
+  item.c.forEach(function(choice, ci){
+    var btn=document.createElement('button');
+    btn.className='choice';
+    btn.type='button';
+    btn.textContent=choice;
+    btn.addEventListener('click', function(){
+      if(btn.disabled) return;
+      var all=card.querySelectorAll('.choice');
+      all.forEach(function(b){b.disabled=true;});
+      if(ci===item.b){
+        btn.classList.add('picked-best');
+        fb.innerHTML='<div class="verdict">That is a Warrior.</div><p>'+item.f+'</p>';
+        correct++;
+      } else {
+        btn.classList.add('picked-bad');
+        all[item.b].classList.add('picked-best');
+        fb.innerHTML='<div class="verdict">Not quite, my love.</div><p>'+item.f+'</p>';
+      }
+      fb.style.display='block';
+      answered++;
+      document.getElementById('counter').textContent='You have answered '+answered+' of 10 situations.';
+      if(answered===10 && correct===10){
+        document.getElementById('badge').style.display='block';
+        document.getElementById('badge').scrollIntoView({behavior:'auto',block:'center'});
+      }
+    });
+    card.appendChild(btn);
+  });
+  quiz.appendChild(card);
+});
+var PETNAMES={
+sweet:{label:"Warm & Sweet",names:["Sweetheart","Lovely","Honey","Darling","Sweetie","Love","Dear","Beautiful","Gorgeous","Angel","Precious","Treasure","Sweet pea","Sugar","My love"],lines:["Come sit with us, {n} — the girls have been waiting for you.","You don't have to do anything but be here, {n}. Just say hello and you're one of us.","{n}, you've been watching long enough — come play with us, we're nicer up close."]},
+queenly:{label:"Glamorous & Queenly",names:["Queen","My Queen","Your Majesty","Duchess","Diva","Star","Goddess","Empress","Royalty","Diamond","Golden girl","Leading lady","Superstar","Icon","Highness"],lines:["{n}, your throne is right here — we've saved you a seat beside us.","{n}, you belong in the front row with the rest of the queens. Come claim it.","{n}, the girls light up when you show up. Come shine with us tonight."]},
+cheeky:{label:"Playful & Cheeky",names:["Sassy","Cheeky","Firecracker","Troublemaker","Spitfire","Wild one","Miss Mischief","Hot stuff","Little minx","Rebel","Fireball","Vixen","Naughty girl","Sparkle","Trouble"],lines:["{n}, I can see you smiling over there — come on, let's see that spark up close.","{n}, you've got that look — the one that says you're ready. Come play with us.","{n}, the girls need your energy tonight. Don't make us come and get you."]},
+fierce:{label:"Fierce & Protective",names:["Warrior","Lioness","Tigress","Boss lady","Fighter","Champion","Protector","Iron lady","Powerhouse","Storm","She-wolf","Badass","Unstoppable","Rock","Guardian"],lines:["{n}, we look after our own here — nobody messes with you while you're with us.","{n}, you're stronger than you know, and this team is stronger with you in it.","{n}, the Gooners don't stand a chance when the queens stand together. Come stand with us."]},
+sisterly:{label:"Sisterly & Close",names:["Sis","Sister","Girl","Girlfriend","Bestie","Soul sister","My girl","Sister-friend","Homegirl","Sister queen","My sister","Gal pal","Sister-in-arms","My person","Family"],lines:["{n}, we've been waiting for you — pull up a chair, you're family now.","{n}, you don't have to watch from the sidelines anymore. You're one of us.","{n}, I know that feeling — I sat back and watched too, until the girls pulled me in. Let us pull you in."]}
+};
+var petStyle=null;
+function pickPetName(){
+  if(!petStyle) return;
+  var g=PETNAMES[petStyle];
+  var name=g.names[Math.floor(Math.random()*g.names.length)];
+  var line=g.lines[Math.floor(Math.random()*g.lines.length)].split("{n}").join(name);
+  document.getElementById('petname-feeling').textContent=g.label;
+  document.getElementById('petname-name').textContent=name;
+  document.getElementById('petname-line').textContent=line;
+  document.getElementById('petname-result').style.display='block';
+}
+document.querySelectorAll('#petname-buttons button').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    petStyle=btn.getAttribute('data-style');
+    pickPetName();
+  });
+});
+document.getElementById('petname-again').addEventListener('click', pickPetName);
+</script>
+</body>
+</html>
